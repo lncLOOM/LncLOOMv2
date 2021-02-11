@@ -88,10 +88,12 @@ systems.
      
      To use this data, download and extract the files into the LncLOOMv2/LncLOOMv2/src/ folder:
      
-     `tar -xvzf eCLIP_narrowPeakApr2019.tar.gz`
+     `tar xvzf eCLIP_narrowPeakApr2019.tar.gz`
+     
      `mv eCLIP_narrowPeakApr2019 LncLOOMv2/LncLOOMv2/src/`
      
-     `tar -xvzf hg19.tgz`
+     `tar xvzf hg19.tgz`
+     
      `mv hg19.fa LncLOOMv2/LncLOOMv2/src/`
      
      
