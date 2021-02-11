@@ -81,10 +81,20 @@ systems.
    * In the LncLOOMv2/LncLOOMv2/src/ directory there is a file called `for_eclip_annotation.txt`. This file tells LncLOOM where to find data needed for annotations. The file looks as follows:
      ```
            Query Layer: 1
-           Blat: /home/caroline/hg19.fa
-           eCLIP: Data 1: /home/caroline/eCLIP/narrowPeakApr2019
+           Blat: src/hg19.fa
+           eCLIP: Data 1: src/eCLIP_narrowPeakApr2019/
      ```
-     Please update these paths to the full paths to your genome file and eCLIP data.
+     Curently it has set up to use data that is located in the LncLOOMv2/LncLOOMv2/src/ folder. However, these files are too large to be stored on GitHub and need to be downloaded from [hg19.fa](https://drive.google.com/file/d/1ZyXCX1o7S4g0Ad_6wZU9esRNVzeqiNCc/view?usp=sharing) and [CLIP_narrowPeakApr2019](https://drive.google.com/file/d/1PaU5kJvfC26fENF6E0H-fwLTimlW-e-8/view?usp=sharing)
+     
+     To use this data, download and extract the files in LncLOOMv2/LncLOOMv2/src/.
+     The eCLIP data consists of BidBed files retrieved from [ENCODE](https://www.encodeproject.org/eclip/) in 2019. 
+     
+     Alternatively, if you have your own data you can update these paths in `for_eclip_annotation.txt` to the full paths to your genome file and eCLIP data. For example:
+          ```
+           Query Layer: 1
+           Blat: /home/MySpace/MyGenomeFiles/hg19.fa
+           eCLIP: Data 1: /home/MySpace/MyeCLIP_Data/
+     ```
      
      To annotate with eCLIP data specified in `for_eclip_annotation.txt` use the `--eclip` option.
      
@@ -112,7 +122,7 @@ systems.
          eCLIP: Data 1: <specify path to eCLIP data>
          ```
 
-In the LncLOOMv2/LncLOOMv2/src/ directory there is also a file: `for_track_output.txt`. Similar to the `for_eclip_annotation.txt`, this file tells LncLOOM where to find a genome file so that a custom track of conserved motifs can be generated. 
+In the LncLOOMv2/LncLOOMv2/src/ directory there is also a file: `for_track_output.txt`. Similar to the `for_eclip_annotation.txt`, this file tells LncLOOM where to find a genome file so that a custom track of conserved motifs can be generated. The paths have been initiated to find `hg19.fa` in LncLOOMv2/LncLOOMv2/src. 
 Note that you can specify a different layer and genome to what is specified in  `for_eclip_annotation.txt`.
 
          To generate a custom track use the `--track` option.
