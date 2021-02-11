@@ -97,7 +97,7 @@ systems.
      `mv hg19.fa LncLOOMv2/LncLOOMv2/src/`
      
      
-     The eCLIP data consists of BidBed files retrieved from [ENCODE](https://www.encodeproject.org/eclip/) in 2019. 
+     The eCLIP data consists of BigBed files retrieved from [ENCODE](https://www.encodeproject.org/eclip/) in 2019. 
      
      Alternatively, if you have your own data you can update these paths in `for_eclip_annotation.txt` to the full paths to your genome file and eCLIP data. For example:
      ```
