@@ -86,7 +86,15 @@ systems.
      ```
      Currently the paths have been set to use data that is located in the LncLOOMv2/LncLOOMv2/src/ folder. However, these files are too large to be stored on GitHub and need to be downloaded from [hg19.fa](https://drive.google.com/file/d/1ZyXCX1o7S4g0Ad_6wZU9esRNVzeqiNCc/view?usp=sharing) and [CLIP_narrowPeakApr2019](https://drive.google.com/file/d/1PaU5kJvfC26fENF6E0H-fwLTimlW-e-8/view?usp=sharing)
      
-     To use this data, download and extract the files into the LncLOOMv2/LncLOOMv2/src/ folder.
+     To use this data, download and extract the files into the LncLOOMv2/LncLOOMv2/src/ folder:
+     
+     `tar -xvzf eCLIP_narrowPeakApr2019.tar.gz`
+     `mv eCLIP_narrowPeakApr2019 LncLOOMv2/LncLOOMv2/src/`
+     
+     `tar -xvzf hg19.tgz`
+     `mv hg19.fa LncLOOMv2/LncLOOMv2/src/`
+     
+     
      The eCLIP data consists of BidBed files retrieved from [ENCODE](https://www.encodeproject.org/eclip/) in 2019. 
      
      Alternatively, if you have your own data you can update these paths in `for_eclip_annotation.txt` to the full paths to your genome file and eCLIP data. For example:
