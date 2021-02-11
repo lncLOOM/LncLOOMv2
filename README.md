@@ -84,16 +84,16 @@ systems.
            Blat: src/hg19.fa
            eCLIP: Data 1: src/eCLIP_narrowPeakApr2019/
      ```
-     Curently it has set up to use data that is located in the LncLOOMv2/LncLOOMv2/src/ folder. However, these files are too large to be stored on GitHub and need to be downloaded from [hg19.fa](https://drive.google.com/file/d/1ZyXCX1o7S4g0Ad_6wZU9esRNVzeqiNCc/view?usp=sharing) and [CLIP_narrowPeakApr2019](https://drive.google.com/file/d/1PaU5kJvfC26fENF6E0H-fwLTimlW-e-8/view?usp=sharing)
+     Currently the paths have been set to use data that is located in the LncLOOMv2/LncLOOMv2/src/ folder. However, these files are too large to be stored on GitHub and need to be downloaded from [hg19.fa](https://drive.google.com/file/d/1ZyXCX1o7S4g0Ad_6wZU9esRNVzeqiNCc/view?usp=sharing) and [CLIP_narrowPeakApr2019](https://drive.google.com/file/d/1PaU5kJvfC26fENF6E0H-fwLTimlW-e-8/view?usp=sharing)
      
-     To use this data, download and extract the files in LncLOOMv2/LncLOOMv2/src/.
+     To use this data, download and extract the files into the LncLOOMv2/LncLOOMv2/src/ folder.
      The eCLIP data consists of BidBed files retrieved from [ENCODE](https://www.encodeproject.org/eclip/) in 2019. 
      
      Alternatively, if you have your own data you can update these paths in `for_eclip_annotation.txt` to the full paths to your genome file and eCLIP data. For example:
           ```
            Query Layer: 1
            Blat: /home/MySpace/MyGenomeFiles/hg19.fa
-           eCLIP: Data 1: /home/MySpace/MyeCLIP_Data/
+           eCLIP: Data 1: /home/MySpace/My_eCLIP_Data/
      ```
      
      To annotate with eCLIP data specified in `for_eclip_annotation.txt` use the `--eclip` option.
