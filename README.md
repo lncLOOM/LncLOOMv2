@@ -96,7 +96,7 @@ systems.
            eCLIP: Data 1: /home/MySpace/My_eCLIP_Data/
      ```
      
-     To annotate with eCLIP data specified in `for_eclip_annotation.txt` use the `--eclip` option.
+     To annotate motifs found with eCLIP data specified in `for_eclip_annotation.txt` use the `--eclip` option when running LncLOOM.
      
      - Explanation:
        * The query layer specifies which sequence you would like annotate. By default this will be the top sequence (layer 1) in your input file.
