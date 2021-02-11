@@ -90,7 +90,7 @@ systems.
      The eCLIP data consists of BidBed files retrieved from [ENCODE](https://www.encodeproject.org/eclip/) in 2019. 
      
      Alternatively, if you have your own data you can update these paths in `for_eclip_annotation.txt` to the full paths to your genome file and eCLIP data. For example:
-          ```
+     ```
            Query Layer: 1
            Blat: /home/MySpace/MyGenomeFiles/hg19.fa
            eCLIP: Data 1: /home/MySpace/My_eCLIP_Data/
