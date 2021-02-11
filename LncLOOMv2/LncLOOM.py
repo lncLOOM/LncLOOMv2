@@ -294,22 +294,28 @@ def main():
 
                 query = blines[1].split(':')
                 if (query[0].strip()).upper()=="BLAT":
-                    genome = os.path.join(os.path.dirname(__file__),*(query[1].strip()).split('/'))
+                    if (query[1].strip()).split('/')[0]=='src' or (query[1].strip()).split('/')[0]=='./src':
+                        genome = os.path.join(os.path.dirname(__file__),*(query[1].strip()).split('/'))
+                    else:
+                        genome = query[1].strip()
                     if os.path.isfile(genome):
                         track_method = "BLAT"
                         #genome = os.path.join(os.path.dirname(__file__),*(query[1].strip()).split('/'))
                         
                     else:
-                        print("ERROR! File not found: "+query[1].strip())
+                        print("ERROR! File not found: "+genome)
                         genome = ''
                         format_file = False
                 elif (query[0].strip()).upper()=="BED":
-                    track_bed = os.path.join(os.path.dirname(__file__),*(query[1].strip()).split('/'))
+                    if (query[1].strip()).split('/')[0]=='src' or (query[1].strip()).split('/')[0]=='./src':
+                        track_bed = os.path.join(os.path.dirname(__file__),*(query[1].strip()).split('/'))
+                    else:
+                        track_bed = query[1].strip()
                     if os.path.isfile(track_bed):
                         track_method = "BED"
                         
                     else:
-                        print("ERROR! File not found: "+query[1].strip())
+                        print("ERROR! File not found: "+track_bed)
                         track_method = ''
                         format_file = False
                 else:
@@ -429,7 +435,7 @@ def main():
                 try:
                     case = ((line.split(':')[0]).strip()).upper()
                     value = (line.split(':')[1]).strip()
-                    if case!='QUERY LAYER':
+                    if case!='QUERY LAYER' and (((line.split(':')[1]).strip()).split('/')[0]=='src' or ((line.split(':')[1]).strip()).split('/')[0]=='./src'):
                         value = os.path.join(os.path.dirname(__file__),*(((line.split(':')[1]).strip()).split('/')))
                 except:
                     continue
@@ -449,7 +455,10 @@ def main():
                 elif case =='ECLIP':
                     eCLIP_Path_names.append(value)
                     try:
-                        e_path = os.path.join(os.path.dirname(__file__),*(((line.split(':')[2]).strip()).split('/')))
+                        if ((line.split(':')[2]).strip()).split('/')[0]=='src' or ((line.split(':')[2]).strip()).split('/') =='./src': 
+                            e_path = os.path.join(os.path.dirname(__file__),*(((line.split(':')[2]).strip()).split('/')))
+                        else:
+                            e_path = (line.split(':')[2]).strip()
                         if os.path.exists(e_path):
                             eCLIP_Paths.append(e_path)
                         else:
