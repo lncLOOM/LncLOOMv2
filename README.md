@@ -141,6 +141,7 @@ Note that you can specify a different layer and genome to what is specified in  
          Blat: <specify path to genome fasta file>
          ```
 7. Make sure that the blat executable has the correct executable permissions:
+
    `chmod 755 LncLOOMv2/LncLOOMv2/src/blat`
 
 8. OPTIONAL: Install the [Gurobi Solver](https://www.gurobi.com/) - although not required it allows much faster performance on larger datasets
