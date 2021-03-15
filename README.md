@@ -97,7 +97,7 @@ systems.
      `mv hg19.fa LncLOOMv2/LncLOOMv2/src/`
      
      
-     The eCLIP data consists of BigBed files retrieved from [ENCODE](https://www.encodeproject.org/eclip/) in 2019. 
+     The eCLIP data consists of BigBed files retrieved from [ENCODE](https://www.encodeproject.org/eclip/) in 2019. If you choose to run the eCLIP annotation option with Blat, by default your query sequence must have at least 95% similarity to the target genome for a match to be considered. This can be adjusted using the --blatID paramater. 
      
      Alternatively, if you have your own data you can update these paths in `for_eclip_annotation.txt` to the full paths to your genome file and eCLIP data. For example:
      ```
