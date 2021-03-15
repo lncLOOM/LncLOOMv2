@@ -45,6 +45,7 @@ def get_options():
     parser.add_argument("-t5", "--tol5", dest="tolerance5prime",help="Tolerance step from median postion of first and last nodes to determine exclusion from 5' extension graphs", type=float,default = 0.50)
     parser.add_argument("-t3", "--tol3", dest="tolerance3prime",help="Tolerance step from median postion of first and last nodes to determine exclusion from 3' extension graphs", type=float,default = 0.50)
     parser.add_argument("-e", "--maxedges", dest="maxedges",help="Sets the maximum number of edges allowed on graph. If the graph is too large, a solution is not solved", type=int,default = 1200)
+    parser.add_argument("-blatID", "--blatID", dest="blatID",help="Minimum percentage identity required for query sequence to match genome by Blat", type=float,default = 95.00)
     
    #Add parameters associated with annotation - default is to not annotate
     parser.add_argument("-tscan", "--targetscan", dest="targetscan",help="Annotates with TargetScan: (Default = False)", action="store_true")
@@ -166,6 +167,7 @@ def main():
         tolerancethree = args.tolerance3prime
         tolerance = (tolerancefive,tolerancethree)
         track = args.track
+        blat_percent = args.blatID
 
         if outdir!='.':
             if not os.path.exists(outdir):
@@ -496,11 +498,11 @@ def main():
                     
                     #In this case - run blat to obtain alignment of query sequence to genome
                         if track_query==queryID and blat_successful:
-                            aligned,chrm,strand,num_of_exons,size_of_exons,seq_exons,chromosome_coords = LA.parse_psl(psl_file,query_seq)
+                            aligned,chrm,strand,num_of_exons,size_of_exons,seq_exons,chromosome_coords = LA.parse_psl(psl_file,query_seq,blat_percent)
                         else:
                             print("Running BLAT")
                             aligned,psl_file = LA.run_blat(outdir,project_name,query_header,query_seq,genome)
-                            aligned,chrm,strand,num_of_exons,size_of_exons,seq_exons,chromosome_coords = LA.parse_psl(psl_file,query_seq)
+                            aligned,chrm,strand,num_of_exons,size_of_exons,seq_exons,chromosome_coords = LA.parse_psl(psl_file,query_seq,blat_percent)
 
                         if aligned:
                             start_min = chromosome_coords[0] #start position of the first exon on the chromosome
@@ -626,7 +628,7 @@ def main():
             query_head = headers[track_query-1]
             parsed = False
             if blat_successful and track_method == "BLAT":
-                parsed,chrm,strand,num_of_exons,size_of_exons,seq_exons,chromosome_coords = LA.parse_psl(psl_file,query_seq)
+                parsed,chrm,strand,num_of_exons,size_of_exons,seq_exons,chromosome_coords = LA.parse_psl(psl_file,query_seq,blat_percent)
 
             elif format_file and track_method == "BED":
                 parsed,chrm,strand,num_of_exons,size_of_exons,seq_exons,chromosome_coords = LA.parse_bedFile(bedfile,query_seq)
