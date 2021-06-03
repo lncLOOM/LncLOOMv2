@@ -270,9 +270,9 @@ def parse_psl(psl_file,default_seq,blat_percent):
                 strand = top_hit[8].strip() #If given a reverse compliment BLAT returns co-ords matches relative to sense strand of chromosome
                 chrm = top_hit[13].strip()
                 num_of_exons = int(top_hit[17].strip())
-                exon_sizes = map(int,top_hit[18].strip().strip(',').split(','))
-                exon_pos_seq = map(int,top_hit[19].strip().strip(',').split(','))
-                exon_pos_chrom = map(int,top_hit[20].strip().strip(',\n').split(','))
+                exon_sizes = list(map(int,top_hit[18].strip().strip(',').split(',')))
+                exon_pos_seq = list(map(int,top_hit[19].strip().strip(',').split(',')))
+                exon_pos_chrom = list(map(int,top_hit[20].strip().strip(',\n').split(',')))
                 len_exons = sum(exon_sizes)
                 matched_bases = float(top_hit[0])
                 if len_exons==len(default_seq):
