@@ -1,7 +1,7 @@
 #####################
 #LncLOOM coded with recursive segmentation of graph, based on simple paths of conserved kmers
 #22 December 2019 created
-#Updated: 4 March 2020
+#Updated: 16 February 2023
 #####################
 
 #import all the relevant modules
@@ -70,11 +70,14 @@ def getIdenticalSequences(sequences):
     print("Excluding identical sequences...")
     total = len(sequences)
 
+    dict_sequences = {s:[] for s in sequences}
+    for i in range(total):
+        dict_sequences[sequences[i]].append(i)
+
     similar = []
-    for i in [x for x in range(total-1) if x not in similar]:
-        for j in [x for x in range(i+1,total) if x not in similar]:
-            if sequences[i]==sequences[j]:
-                similar.append(j)
+    repeats = [s for s in dict_sequences if len(dict_sequences[s])>1]
+    for s in repeats:
+        similar.extend(dict_sequences[s][1:])
 
     return similar
 
@@ -83,20 +86,26 @@ def getSimilarSequences(aligned,similarity_cutoff):
     print('Excluding sequences with >'+str(similarity_cutoff)+' identity...')
     total = len(aligned)
 
+    dict_sequences = {s:[] for s in aligned}
+    for i in range(total):
+        dict_sequences[aligned[i]].append(i)
+
     similar = []
-    for i in [x for x in range(total-1) if x not in similar]:
-        for j in [x for x in range(i+1,total) if x not in similar]:
-            if aligned[i]==aligned[j]:
-                similar.append(j)
+    repeats = [s for s in dict_sequences if len(dict_sequences[s])>1]
+    for s in repeats:
+        similar.extend(dict_sequences[s][1:])
 
 
-    for i in [x for x in range(total-1) if x not in similar]:
-        for j in [x for x in range(i+1,total) if x not in similar]:
-            seqI = aligned[i]
-            seqJ = aligned[j]
-            similarity = calculate_similarity(seqI,seqJ)
-            if similarity>similarity_cutoff:
-                similar.append(j)
+    remaining = [x for x in range(total-1) if x not in similar]
+
+    for i in remaining:
+        for j in remaining:
+            if i!=j:
+                seqI = aligned[i]
+                seqJ = aligned[j]
+                similarity = calculate_similarity(seqI,seqJ)
+                if similarity>similarity_cutoff:
+                    similar.append(j)
 
     return similar         
 
@@ -348,7 +357,7 @@ def build_graph(seq_subset,lens_subset,hsps,kmers_len,prune):
  
         hsps_seq1_seq2 = hsps[i]
 
-        
+        print(i)
 
         
         if hsps_seq1_seq2: #if hsps exist between the two layers, splice into segments
@@ -482,7 +491,11 @@ def build_graph(seq_subset,lens_subset,hsps,kmers_len,prune):
                     
     #prune high_repetitive_kmers
     remove = [x for x in G.nodes() if G.nodes[x]['seq'] in high_repetitive_kmers]
-    G.remove_nodes_from(remove) 
+    G.remove_nodes_from(remove)
+
+
+    print("Built")
+ 
     return G
 
 def prune_graph_level(G,level):
