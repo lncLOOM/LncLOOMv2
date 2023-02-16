@@ -357,8 +357,6 @@ def build_graph(seq_subset,lens_subset,hsps,kmers_len,prune):
  
         hsps_seq1_seq2 = hsps[i]
 
-        print(i)
-
         
         if hsps_seq1_seq2: #if hsps exist between the two layers, splice into segments
             
@@ -491,11 +489,7 @@ def build_graph(seq_subset,lens_subset,hsps,kmers_len,prune):
                     
     #prune high_repetitive_kmers
     remove = [x for x in G.nodes() if G.nodes[x]['seq'] in high_repetitive_kmers]
-    G.remove_nodes_from(remove)
-
-
-    print("Built")
- 
+    G.remove_nodes_from(remove) 
     return G
 
 def prune_graph_level(G,level):
